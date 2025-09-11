@@ -1,5 +1,3 @@
-
-// ========== CuentaNotFoundException.java ==========
 package edu.gt.umg.mipymes.contable.mipymes_contable_api.exception;
 
 /**

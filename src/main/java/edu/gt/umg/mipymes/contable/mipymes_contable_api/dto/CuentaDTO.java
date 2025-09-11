@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,6 +20,8 @@ import java.time.LocalDateTime;
  * 3. Desacoplar la estructura interna (Entity) de la API externa
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CuentaDTO {
 
     private Long id;
@@ -50,66 +54,10 @@ public class CuentaDTO {
     private String naturalezaDescripcion;
 
     /**
-     * Constructor que incluye las descripciones calculadas
+     * Método para calcular las descripciones después de setear los valores
      */
-    public CuentaDTO(Long id, String codigo, String nombre, TipoCuenta tipo, 
-                     NaturalezaCuenta naturaleza, BigDecimal saldo, Boolean activa, 
-                     String descripcion, LocalDateTime fechaCreacion, LocalDateTime fechaModificacion) {
-        this.id = id;
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.naturaleza = naturaleza;
-        this.saldo = saldo;
-        this.activa = activa;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaModificacion = fechaModificacion;
-        
-        // Calcular descripciones
+    public void calcularDescripciones() {
         this.tipoDescripcion = tipo != null ? tipo.getDescripcion() : null;
         this.naturalezaDescripcion = naturaleza != null ? naturaleza.getDescripcion() : null;
-    }
-
-    public CuentaDTO() {}
-}
-
-/**
- * DTO simplificado para crear una nueva cuenta
- */
-@Data
-class CrearCuentaDTO {
-
-    @NotBlank(message = "El código de la cuenta es obligatorio")
-    @Pattern(regexp = "^[0-9]{4}$", message = "El código debe tener exactamente 4 dígitos")
-    private String codigo;
-
-    @NotBlank(message = "El nombre de la cuenta es obligatorio")
-    private String nombre;
-
-    @NotNull(message = "El tipo de cuenta es obligatorio")
-    private TipoCuenta tipo;
-
-    @NotNull(message = "La naturaleza de la cuenta es obligatoria")
-    private NaturalezaCuenta naturaleza;
-
-    private String descripcion;
-}
-
-/**
- * DTO para respuestas de resumen/reportes
- */
-@Data
-class ResumenCuentaDTO {
-    private TipoCuenta tipo;
-    private String tipoDescripcion;
-    private Long totalCuentas;
-    private BigDecimal saldoTotal;
-
-    public ResumenCuentaDTO(TipoCuenta tipo, Long totalCuentas, BigDecimal saldoTotal) {
-        this.tipo = tipo;
-        this.tipoDescripcion = tipo.getDescripcion();
-        this.totalCuentas = totalCuentas;
-        this.saldoTotal = saldoTotal;
     }
 }
