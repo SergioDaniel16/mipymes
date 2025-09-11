@@ -47,6 +47,34 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
+    @ExceptionHandler(AsientoNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAsientoNotFound(AsientoNotFoundException ex) {
+        log.error("Asiento no encontrado: {}", ex.getMessage());
+        
+        ErrorResponse error = new ErrorResponse(
+            HttpStatus.NOT_FOUND.value(),
+            "Asiento no encontrado",
+            ex.getMessage(),
+            LocalDateTime.now()
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(AsientoNoBalanceadoException.class)
+    public ResponseEntity<ErrorResponse> handleAsientoNoBalanceado(AsientoNoBalanceadoException ex) {
+        log.error("Asiento no balanceado: {}", ex.getMessage());
+        
+        ErrorResponse error = new ErrorResponse(
+            HttpStatus.BAD_REQUEST.value(),
+            "Asiento no balanceado",
+            ex.getMessage(),
+            LocalDateTime.now()
+        );
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         log.error("Error interno del servidor: ", ex);
