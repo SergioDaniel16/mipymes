@@ -155,6 +155,7 @@ public class CuentaService {
 
     // ========== MÉTODOS AUXILIARES ==========
 
+
     /**
      * Convertir lista de entidades a DTOs
      */
@@ -168,18 +169,18 @@ public class CuentaService {
      * Convertir entidad a DTO
      */
     private CuentaDTO convertirADTO(Cuenta cuenta) {
-        return new CuentaDTO(
-            cuenta.getId(),
-            cuenta.getCodigo(),
-            cuenta.getNombre(),
-            cuenta.getTipo(),
-            cuenta.getNaturaleza(),
-            cuenta.getSaldo(),
-            cuenta.getActiva(),
-            cuenta.getDescripcion(),
-            cuenta.getFechaCreacion(),
-            cuenta.getFechaModificacion()
-        );
+        CuentaDTO dto = new CuentaDTO();
+        dto.setId(cuenta.getId());
+        dto.setCodigo(cuenta.getCodigo());
+        dto.setNombre(cuenta.getNombre());
+        dto.setTipo(cuenta.getTipo());
+        dto.setNaturaleza(cuenta.getNaturaleza());
+        dto.setSaldo(cuenta.getSaldo());
+        dto.setActiva(cuenta.getActiva());
+        dto.setDescripcion(cuenta.getDescripcion());
+        dto.setFechaCreacion(cuenta.getFechaCreacion());
+        dto.setFechaModificacion(cuenta.getFechaModificacion());
+        return dto;
     }
 
     /**
