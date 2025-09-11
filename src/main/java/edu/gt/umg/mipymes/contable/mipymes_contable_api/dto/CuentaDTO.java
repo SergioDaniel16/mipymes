@@ -6,14 +6,22 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
  * DTO para transferir datos de Cuenta entre las capas de la aplicación
+ * Los DTOs nos permiten:
+ * 1. Controlar qué datos exponemos en la API
+ * 2. Validar datos de entrada
+ * 3. Desacoplar la estructura interna (Entity) de la API externa
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CuentaDTO {
 
     private Long id;
@@ -41,6 +49,15 @@ public class CuentaDTO {
 
     private LocalDateTime fechaModificacion;
 
-    // Constructor vacío (Lombok lo genera automáticamente con @Data)
-    public CuentaDTO() {}
+    // Campos adicionales calculados para la vista
+    private String tipoDescripcion;
+    private String naturalezaDescripcion;
+
+    /**
+     * Método para calcular las descripciones después de setear los valores
+     */
+    public void calcularDescripciones() {
+        this.tipoDescripcion = tipo != null ? tipo.getDescripcion() : null;
+        this.naturalezaDescripcion = naturaleza != null ? naturaleza.getDescripcion() : null;
+    }
 }

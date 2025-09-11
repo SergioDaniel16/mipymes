@@ -29,7 +29,6 @@ import java.util.List;
 @RequestMapping("/api/cuentas")
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin(origins = "*") // Permitir CORS para Angular (frontend)
 public class CuentaController {
 
     private final CuentaService cuentaService;
