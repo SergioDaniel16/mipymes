@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controller REST para el manejo de Asientos Contables (Libro Diario)
@@ -27,6 +29,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/asientos")
+
 @RequiredArgsConstructor
 @Slf4j
 public class AsientoContableController {
