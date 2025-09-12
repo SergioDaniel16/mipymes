@@ -1,0 +1,42 @@
+// src/index.html - Archivo HTML principal
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Sistema Contable MIPYMES - El Almacén El Planeador</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#4caf50">
+  <meta name="description" content="Sistema contable completo para micro, pequeñas y medianas empresas (MIPYMES). Gestión integral de contabilidad, inventarios, bancos y clientes.">
+  <meta name="keywords" content="sistema contable, MIPYMES, contabilidad, inventario, Guatemala">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Sistema Contable MIPYMES">
+  <meta property="og:description" content="Sistema contable completo para MIPYMES - El Almacén El Planeador">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/logo-og.png">
+
+</head>
+<body class="mat-typography">
+  <app-root></app-root>
+
+  <!-- Scripts de inicialización -->
+  <script>
+    // Configuración inicial de la aplicación
+    window.appConfig = {
+      version: '1.0.0',
+      environment: 'development'
+    };
+  </script>
+</body>
+</html>
