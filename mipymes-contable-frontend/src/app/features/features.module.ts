@@ -5,20 +5,11 @@ import { CommonModule } from '@angular/common';
 // Importamos SharedModule en lugar de declarar componentes compartidos
 import { SharedModule } from '../shared/shared.module';
 
-// Componentes específicos de features
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ListaCuentasComponent } from './cuentas/lista-cuentas/lista-cuentas.component';
-import { FormCuentaComponent } from './cuentas/form-cuenta/form-cuenta.component';
-import { ListaAsientosComponent } from './asientos/lista-asientos/lista-asientos.component';
-import { FormAsientoComponent } from './asientos/form-asiento/form-asiento.component';
+// NO importamos componentes específicos de features porque van en sus propios módulos
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    ListaCuentasComponent,
-    FormCuentaComponent,
-    ListaAsientosComponent,
-    FormAsientoComponent
+    // Los componentes ahora están en sus propios módulos
   ],
   imports: [
     CommonModule,

@@ -1,84 +1,29 @@
 // src/styles.scss - Estilos globales y tema de Angular Material
 
-@import '~@angular/material/theming';
+// Incluir los mixins de Angular Material con la sintaxis correcta para Angular 16+
+@use '@angular/material' as mat;
 
-// Incluir los mixins de Angular Material
-@include mat-core();
+// Incluir core una sola vez
+@include mat.core();
 
 // Definir paleta de colores personalizada para "El Almacén El Planeador"
-$almacen-primary: mat-palette((
-  50: #e8f5e8,
-  100: #c8e6c9,
-  200: #a5d6a7,
-  300: #81c784,
-  400: #66bb6a,
-  500: #4caf50,  // Color principal - Verde
-  600: #43a047,
-  700: #388e3c,
-  800: #2e7d32,
-  900: #1b5e20,
-  A100: #b9f6ca,
-  A200: #69f0ae,
-  A400: #00e676,
-  A700: #00c853,
-  contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: white,
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: rgba(black, 0.87),
-    A200: rgba(black, 0.87),
-    A400: rgba(black, 0.87),
-    A700: white,
-  )
-), 500, 300, 700);
-
-$almacen-accent: mat-palette((
-  50: #fff3e0,
-  100: #ffe0b2,
-  200: #ffcc80,
-  300: #ffb74d,
-  400: #ffa726,
-  500: #ff9800,  // Color de acento - Naranja
-  600: #fb8c00,
-  700: #f57c00,
-  800: #ef6c00,
-  900: #e65100,
-  A100: #ffd180,
-  A200: #ffab40,
-  A400: #ff9100,
-  A700: #ff6d00,
-  contrast: (
-    50: rgba(black, 0.87),
-    100: rgba(black, 0.87),
-    200: rgba(black, 0.87),
-    300: rgba(black, 0.87),
-    400: rgba(black, 0.87),
-    500: rgba(black, 0.87),
-    600: white,
-    700: white,
-    800: white,
-    900: white,
-    A100: rgba(black, 0.87),
-    A200: rgba(black, 0.87),
-    A400: rgba(black, 0.87),
-    A700: white,
-  )
-), 500, 300, 700);
-
-$almacen-warn: mat-palette($mat-red, 500);
+$almacen-primary: mat.define-palette(mat.$green-palette, 500, 300, 700);
+$almacen-accent: mat.define-palette(mat.$orange-palette, 500, 300, 700);
+$almacen-warn: mat.define-palette(mat.$red-palette, 500);
 
 // Crear el tema
-$almacen-theme: mat-light-theme($almacen-primary, $almacen-accent, $almacen-warn);
+$almacen-theme: mat.define-light-theme((
+  color: (
+    primary: $almacen-primary,
+    accent: $almacen-accent,
+    warn: $almacen-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
 
 // Incluir el tema
-@include angular-material-theme($almacen-theme);
+@include mat.all-component-themes($almacen-theme);
 
 // Estilos globales personalizados
 * {
@@ -144,7 +89,7 @@ body {
   margin-bottom: 16px;
 
   .mat-card-header {
-    background-color: mat-color($almacen-primary, 50);
+    background-color: #e8f5e8;
     margin: -24px -24px 16px -24px;
     padding: 16px 24px;
   }
@@ -166,7 +111,7 @@ body {
     width: 48px;
     height: 48px;
     margin-right: 16px;
-    color: mat-color($almacen-primary);
+    color: #4caf50;
   }
 
   .card-content {
@@ -180,50 +125,13 @@ body {
     .stat-value {
       font-size: 24px;
       font-weight: 500;
-      color: mat-color($almacen-primary, 700);
+      color: #2e7d32;
     }
 
     .stat-label {
       font-size: 14px;
       color: rgba(0,0,0,0.6);
     }
-  }
-}
-
-// Estados financieros
-.financial-section {
-  margin-bottom: 24px;
-
-  .section-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 16px;
-    color: mat-color($almacen-primary, 700);
-    border-bottom: 2px solid mat-color($almacen-primary, 200);
-    padding-bottom: 8px;
-  }
-
-  .total-row {
-    font-weight: bold;
-    background-color: mat-color($almacen-primary, 50);
-  }
-}
-
-// Balance de comprobación
-.balance-table {
-  .deudor-column {
-    text-align: right;
-    color: #1976d2;
-  }
-
-  .acreedor-column {
-    text-align: right;
-    color: #388e3c;
-  }
-
-  .total-row {
-    font-weight: bold;
-    border-top: 2px solid #ddd;
   }
 }
 
@@ -260,14 +168,14 @@ body {
 
 // Error states
 .error-message {
-  color: mat-color($almacen-warn);
+  color: #d32f2f;
   font-size: 14px;
   margin-top: 4px;
 }
 
 // Success states
 .success-message {
-  color: mat-color($almacen-primary, 700);
+  color: #2e7d32;
   font-size: 14px;
   margin-top: 4px;
 }
