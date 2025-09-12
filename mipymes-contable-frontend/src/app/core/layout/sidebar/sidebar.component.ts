@@ -1,6 +1,7 @@
 // src/app/core/layout/sidebar/sidebar.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment'; // Agregar esta importación
 
 interface MenuItem {
   title: string;
@@ -24,9 +25,9 @@ interface MenuItem {
          [routerLink]="item.route"
          routerLinkActive="active-link"
          class="nav-item">
-        <mat-icon matListIcon>{{ item.icon }}</mat-icon>
-        <span matLine>{{ item.title }}</span>
-        <span matLine class="item-description">{{ item.description }}</span>
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.title }}</span>
+        <span matListItemLine class="item-description">{{ item.description }}</span>
       </a>
     </mat-nav-list>
 

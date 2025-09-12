@@ -1,4 +1,4 @@
-// src/app/app.module.ts - Módulo principal
+// src/app/app.module.ts - Módulo principal corregido
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,12 +15,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 // Componentes
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Layout
+// Layout (SOLO estos componentes van aquí)
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
@@ -29,18 +30,17 @@ import { SidebarComponent } from './core/layout/sidebar/sidebar.component';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
-// Shared
-import { LoadingComponent } from './shared/components/loading/loading.component';
-import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
+// Shared Module (componentes compartidos como Loading y ErrorMessage van ahí)
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     HeaderComponent,
-    SidebarComponent,
-    LoadingComponent,
-    ErrorMessageComponent
+    SidebarComponent
+    // NO declaramos LoadingComponent ni ErrorMessageComponent aquí
+    // porque van en SharedModule
   ],
   imports: [
     BrowserModule,
@@ -59,8 +59,12 @@ import { ErrorMessageComponent } from './shared/components/error-message/error-m
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatDividerModule,
 
-    // Routing
+    // Shared Module
+    SharedModule,
+
+    // Routing (debe ir al final)
     AppRoutingModule
   ],
   providers: [
