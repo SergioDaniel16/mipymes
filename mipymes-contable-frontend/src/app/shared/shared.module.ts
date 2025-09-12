@@ -1,4 +1,4 @@
-// src/app/shared/shared.module.ts - Módulo compartido
+// src/app/shared/shared.module.ts - Módulo compartido corregido
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatChipsModule } from '@angular/material/chips'; // 👈 ESTA LÍNEA ES LA QUE FALTABA
 
 // Componentes
 import { LoadingComponent } from './components/loading/loading.component';
@@ -59,7 +60,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatNativeDateModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatChipsModule // 👈 Y TAMBIÉN AQUÍ
   ],
   exports: [
     CommonModule,
@@ -84,6 +86,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
     MatCheckboxModule,
     MatRadioModule,
     MatSlideToggleModule,
+    MatChipsModule, // 👈 Y EXPORTARLO TAMBIÉN
 
     // Componentes
     LoadingComponent,
